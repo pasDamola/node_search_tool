@@ -10,26 +10,42 @@ const userArguments = [...arguments]
 const regexPattern = new RegExp(regex, "i")
 
 
-// check through each file and check if there is a pattern match
+// check through each file or directory and check if there is a pattern match
 userArguments.forEach( file => {
 
     const statObj = fs.statSync(file)
 
     if(statObj.isDirectory()) {
-        filenames = fs.readdirSync(file);
+        const files = fs.readdirSync(file);
+        files.forEach(fileInDir => {
+
+        try {
+            const fileContents =  fs.readFileSync(`./${file}/${fileInDir}`, 'utf-8')
+
+            const match = fileContents.match(regexPattern)
+
+            if(match) {
+                console.log(file, fileInDir)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+        })
+    }   
+
+    else {
+        try {
+            const fileContents =  fs.readFileSync(`./${file}`, 'utf-8')
+     
+            const match = fileContents.match(regexPattern)
+     
+            if(match) {
+                console.log(file)
+            }
+         } catch (error) {
+             console.error(error)
+         }
     }
-
-    // try {
-    //    const fileContents =  fs.readFileSync(`./${file}`, 'utf-8')
-
-    //    const match = fileContents.match(regexPattern)
-
-    //    if(match) {
-    //        console.log(file)
-    //    }
-    // } catch (error) {
-    //     console.error(error)
-    // }
 
 }
     
