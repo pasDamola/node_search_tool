@@ -1,0 +1,23 @@
+{
+  "name": "node_search_tool",
+  "version": "1.0.0",
+  "description": "Based on [Eloquent Javascript's](https://eloquentjavascript.net/20_node.html) node exercises, this tool is a command line tool that aims to mimic a Unix based tool called **grep** that can be used to quickly search files for a regular expression.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pasDamola/node_search_tool.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pasDamola/node_search_tool/issues"
+  },
+  "homepage": "https://github.com/pasDamola/node_search_tool#readme",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
+}

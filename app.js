@@ -1,4 +1,5 @@
 const fs = require('fs');
+const chalk = require('chalk');
 
 
 // Using ES6 destructuring syntax to extract the command line arguments
@@ -14,7 +15,7 @@ const regexPattern = new RegExp(regex, "i")
 userArguments.forEach( file => {
 
     const statObj = fs.statSync(file)
-
+    // directory check
     if(statObj.isDirectory()) {
         const files = fs.readdirSync(file);
         files.forEach(fileInDir => {
@@ -25,7 +26,9 @@ userArguments.forEach( file => {
             const match = fileContents.match(regexPattern)
 
             if(match) {
-                console.log(file, fileInDir)
+                console.log(chalk.green.bold.inverse('Directory Match'))
+                console.log(`---${file}`)
+                console.log(`----${fileInDir}`)
             }
         } catch (error) {
             console.error(error)
@@ -33,6 +36,7 @@ userArguments.forEach( file => {
         })
     }   
 
+    // file check
     else {
         try {
             const fileContents =  fs.readFileSync(`./${file}`, 'utf-8')
@@ -40,7 +44,8 @@ userArguments.forEach( file => {
             const match = fileContents.match(regexPattern)
      
             if(match) {
-                console.log(file)
+                console.log(chalk.green.bold.inverse("File Match"))
+                console.log(`----${file}`)
             }
          } catch (error) {
              console.error(error)
