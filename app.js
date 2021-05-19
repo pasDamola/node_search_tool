@@ -13,17 +13,23 @@ const regexPattern = new RegExp(regex, "i")
 // check through each file and check if there is a pattern match
 userArguments.forEach( file => {
 
-    try {
-       const fileContents =  fs.readFileSync(`./${file}`, 'utf-8')
+    const statObj = fs.statSync(file)
 
-       const match = fileContents.match(regexPattern)
-
-       if(match) {
-           console.log(file)
-       }
-    } catch (error) {
-        console.error(error)
+    if(statObj.isDirectory()) {
+        filenames = fs.readdirSync(file);
     }
+
+    // try {
+    //    const fileContents =  fs.readFileSync(`./${file}`, 'utf-8')
+
+    //    const match = fileContents.match(regexPattern)
+
+    //    if(match) {
+    //        console.log(file)
+    //    }
+    // } catch (error) {
+    //     console.error(error)
+    // }
 
 }
     
