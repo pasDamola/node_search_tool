@@ -29,6 +29,8 @@ userArguments.forEach( file => {
                 console.log(chalk.green.bold.inverse('Directory Match'))
                 console.log(`---${file}`)
                 console.log(`----${fileInDir}`)
+            } else {
+                console.log(chalk.red.bold.inverse('No Match Found!'))
             }
         } catch (error) {
             console.error(error)
@@ -46,6 +48,8 @@ userArguments.forEach( file => {
             if(match) {
                 console.log(chalk.green.bold.inverse("File Match"))
                 console.log(`----${file}`)
+            } else {
+                console.log(chalk.red.bold.inverse('No Match Found!'))
             }
          } catch (error) {
              console.error(error)
