@@ -11,6 +11,8 @@ userArguments.forEach( file => {
 
     try {
        const fileContents =  fs.readFileSync(`./${file}`, 'utf-8')
+
+       //search for regex pattern match in each file
        console.log(fileContents)
     } catch (error) {
         console.error(error)
